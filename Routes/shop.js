@@ -6,11 +6,11 @@ const express = require('express');
 const rootDirectory = require('../utils/path');
 const adminData = require('./admin');
 
-const router =  express.Router();
+const router = express.Router();
 
-router.get('/' ,(req, res, next) => {
-    console.log('taken in admin to here' , adminData.products);
-    res.sendFile(path.join(rootDirectory, 'views' , 'shop.html'));
+router.get('/', (req, res, next) => {
+    const products = adminData.products;
+    res.render('shop', {prods : products, pageTitle : "My Shop", path : '/'});
 })
 
 module.exports = router;
