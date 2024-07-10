@@ -1,16 +1,1 @@
-[
-    {
-        "title": "cxz",
-        "imageUrl": "/asset/image/book4.jpg",
-        "price": "21",
-        "description": "zcxz",
-        "id": "0.6719267059129643"
-    },
-    {
-        "title": "zcv",
-        "imageUrl": "/asset/image/book1.jpg",
-        "price": "32",
-        "description": "agda",
-        "id": "0.6906779064605018"
-    }
-]
+[{"id":"0.6719267059129643","title":"hhhhhhhhh","imageUrl":"/asset/image/book4.jpg","price":"21","description":"zcxz"},{"id":"0.6906779064605018","title":"9999999999","imageUrl":"/asset/image/book1.jpg","price":"32","description":"agda"},{"id":"0.7078132127314511","title":"65544454","imageUrl":"/asset/image/book4.jpg","price":"45","description":"54 vvvvc"}]
