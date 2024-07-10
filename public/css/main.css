@@ -133,6 +133,9 @@ form {
   z-index: 5;
   display: none;
 }
+.centered {
+  text-align: center;
+}
 
 .grid {
   display: flex;
