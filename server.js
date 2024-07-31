@@ -11,7 +11,8 @@ const app = express();
 const adminRoutes = require('./Routes/admin');
 const shopRoutes = require('./Routes/shop');
 const errorController = require('./Controllers/Error');
-const mongoConnet = require('./utils/database').mongoConnet;    
+const mongoConnet = require('./utils/database').mongoConnet;
+const User = require('./models/user');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -22,13 +23,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use((req, res, next) => {
 
-    // User.findByPk(1)
-    //     .then(user => {
-    //         req.user = user;
-    //         next();
-    //     })
-    //     .catch(err => console.log(err))
-    next()
+    User.findById('66a791d893c31b76105f8809')
+        .then(user => {
+            req.user = new User(user.name , user.email , user.cart, user._id);
+            next();
+        })
+        .catch(err => console.log(err))
+    // next()
 })
 
 app.use('/admin', adminRoutes);
