@@ -10,8 +10,7 @@ exports.getIndex = (req, res, next) => {
             res.render('shop/index', {
                 prods: products,
                 pageTitle: "My Shop",
-                path: '/',
-                isAuthenticated :  req.session.isLoggedIn 
+                path: '/'
             });
         })
         .catch(err => {
@@ -26,8 +25,7 @@ exports.getProducts = (req, res, next) => {
             res.render('shop/product-list', {
                 prods: products,
                 pageTitle: "My Shop",
-                path: '/products',
-                isAuthenticated :  req.session.isLoggedIn 
+                path: '/products'
             });
         })
         .catch(err => {
@@ -44,8 +42,7 @@ exports.getProduct = (req, res, next) => {
             res.render('shop/product-detail', {
                 product: product,
                 pageTitle: product.title,
-                path: '/products',
-                isAuthenticated :  req.session.isLoggedIn 
+                path: '/products'
             })
         })
         .catch(err => console.log(err))
@@ -61,8 +58,7 @@ exports.getCart = (req, res, next) => {
             res.render('shop/cart', {
                 pageTitle: 'Your cart',
                 path: '/cart',
-                products: products,
-                isAuthenticated :  req.session.isLoggedIn 
+                products: products
             })
         }).catch(err => console.log(err))
 
@@ -100,8 +96,7 @@ exports.getOrders = (req, res, next) => {
                 {
                     pageTitle: 'Yours orders',
                     path: '/orders',
-                    orders: orders,
-                    isAuthenticated :  req.session.isLoggedIn 
+                    orders: orders
                 })
         })
         .catch(err => console.log(err))
@@ -115,7 +110,7 @@ exports.postOrder = (req, res, next) => {
         })
         const order = new Order({
             user : {
-                name : req.user.name,
+                email : req.user.email,
                 userId: req.user
             },
             products : products
