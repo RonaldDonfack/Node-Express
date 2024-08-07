@@ -1,3 +1,5 @@
 Sequelize docs : for handling database and tables creation in the database
 
 third party package for handling cookies
+
+express-validator  or validators package generally 
