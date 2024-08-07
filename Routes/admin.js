@@ -9,21 +9,19 @@ const isAuth = require('../middleware/is-auth');
 const router = express.Router();
 
 
-router.get('/add-product',
-    [
-        body('title')
-            .isString()
-            .isLength({ min: 3 })
-            .trim(),
-      
-        body('price').isFloat(),
-        body('description')
-            .isLength({ min: 5, max: 400 })
-            .trim()
-    ],
-    isAuth, adminController.getAddProduct);
+router.get('/add-product', isAuth, adminController.getAddProduct);
 
-router.post('/add-product', isAuth, adminController.postAddProduct);
+router.post('/add-product', [
+    body('title')
+        .isString()
+        .isLength({ min: 3 })
+        .trim(),
+
+    body('price').isFloat(),
+    body('description')
+        .isLength({ min: 5, max: 400 })
+        .trim()
+], isAuth, adminController.postAddProduct);
 
 router.get('/products', isAuth, adminController.getProducts);
 
@@ -35,7 +33,7 @@ router.post('/edit-product',
             .isString()
             .isLength({ min: 3 })
             .trim(),
-      
+
         body('price').isFloat(),
         body('description')
             .isLength({ min: 5, max: 400 })
