@@ -22,6 +22,8 @@ router.post('/create-ordre' , isAuth, shopController.postOrder);
 
 router.get('/orders' , isAuth, shopController.getOrders);
 
+router.get('/orders/:orderId' , isAuth, shopController.getInvoice);
+
 
 // router.get('/checkout')
 
