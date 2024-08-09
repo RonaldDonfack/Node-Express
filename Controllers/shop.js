@@ -7,7 +7,7 @@ const Product = require('../models/product');
 const Order = require('../models/order');
 const PDFDocument = require('pdfkit')
 
-const ITEMS_PER_PAGE = 1;
+const ITEMS_PER_PAGE = 3;
 
 exports.getIndex = (req, res, next) => {
     let page = +req.query.page || 1;
@@ -161,6 +161,24 @@ exports.postOrder = (req, res, next) => {
             // console.log('orders Savedin db');
         })
         .catch(err => console.log(err))
+}
+exports.getCheckout =(req, res, next) => {
+    req.user.populate('cart.items.productId')
+    // .excePopulate()
+    .then(user => {
+
+        const products = user.cart.items
+        let total =0;
+        products.forEach(p => {
+            total += p.quantity * p.productId.price;
+        })
+        res.render('shop/checkout', {
+            pageTitle: 'Your checkout',
+            path: '/checkout',
+            products: products,
+            totalSum : total
+        })
+    }).catch(err => console.log(err))
 }
 
 exports.getInvoice = (req, res, next) => {

@@ -2,6 +2,8 @@ const path = require('path')
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const { v4: uuidv4 } = require('uuid');
+const uniqid = require('uniqid')
 // const expressHbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const session = require('express-session')
@@ -18,13 +20,13 @@ const store = new MongoDbStore({
     collection: 'sessions'
 })
 const csrfProtection = csrf();
+
 const fileStorage = multer.diskStorage({
     destination: 'images',
-
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + '-' + file.originalname);
-    }
-})
+      cb(null, uniqid('',  `-${file.originalname}`));
+    },
+  });
 
 // File filter function
 const fileFilter = (req, file, cb) => {

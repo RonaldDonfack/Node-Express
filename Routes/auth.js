@@ -26,13 +26,6 @@ router.post('/login', [
 
 router.get('/signup', authController.getSignup);
 
-
-
-
-
-
-
-
 router.post('/signup', [
     check('email')
         .isEmail()
@@ -47,7 +40,7 @@ router.post('/signup', [
         }),
     body('password', `password doesn't respect the normes`)
         .isLength({ min: 3 }),
-    body('confirmedPassword')
+    body('confirmPassword')
         .custom((value, { req }) => {
             if (value !== req.body.password) {
                 throw new Error('password have to match');
